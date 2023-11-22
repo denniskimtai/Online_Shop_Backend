@@ -1,37 +1,34 @@
-package com.dennis.onlineshopinterview.model;
+package com.dennis.onlineshopinterview.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
 import org.springframework.lang.NonNull;
 
-@Entity
-@Table(name = "Products")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "Id")
+public class ProductDto {
     private Integer id;
     @NonNull
-    @Column(name = "ProductName")
     private String productName;
     @NonNull
-    @Column(name = "ProductImageUrl")
     private String productImageUrl;
     @NonNull
-    @Column(name = "Weight")
     private double weight;
     @NonNull
-    @Column(name = "Price")
     private double price;
     @NonNull
-    @Column(name = "PromotionalPrice")
     private double promotionalPrice;
+    @NonNull
+    private Integer categoryId;
 
-    //Many to One relationship
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "CategoryId")
-    Category category;
+    public ProductDto() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @NonNull
     public String getProductName() {
         return productName;
@@ -74,11 +71,12 @@ public class Product {
         this.promotionalPrice = promotionalPrice;
     }
 
-    public Category getCategory() {
-        return category;
+    @NonNull
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(@NonNull Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }
