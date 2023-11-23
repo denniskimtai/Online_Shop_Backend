@@ -1,4 +1,4 @@
-package com.dennis.onlineshopinterview.controller;
+package com.dennis.onlineshopinterview.api.controller;
 
 import com.dennis.onlineshopinterview.dto.ProductDto;
 import com.dennis.onlineshopinterview.model.Category;
