@@ -8,7 +8,7 @@ import org.springframework.lang.NonNull;
 @Table(name = "Categories")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int id;
     @NonNull
     @Column(name = "CategoryName")

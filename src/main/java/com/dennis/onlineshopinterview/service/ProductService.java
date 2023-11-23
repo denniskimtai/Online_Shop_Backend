@@ -46,6 +46,7 @@ public class ProductService {
         productDto.setWeight(product.getWeight());
         productDto.setPromotionalPrice(product.getPromotionalPrice());
         productDto.setCategoryId(product.getCategory().getId());
+        productDto.setId(product.getId());
         
         return productDto;
     }

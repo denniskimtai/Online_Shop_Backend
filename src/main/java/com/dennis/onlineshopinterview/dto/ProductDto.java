@@ -3,8 +3,10 @@ package com.dennis.onlineshopinterview.dto;
 import jakarta.persistence.Column;
 import org.springframework.lang.NonNull;
 
+import java.util.UUID;
+
 public class ProductDto {
-    private Integer id;
+    private UUID id;
     @NonNull
     private String productName;
     @NonNull
@@ -19,14 +21,6 @@ public class ProductDto {
     private Integer categoryId;
 
     public ProductDto() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     @NonNull
@@ -78,5 +72,9 @@ public class ProductDto {
 
     public void setCategoryId(@NonNull Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }
