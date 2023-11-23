@@ -17,9 +17,9 @@ public class AuthenticationToken {
     @Column(name = "LastModifiedAt")
     public Date lastModifiedAt;
 
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = Customer.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "UserId")
-    private User user;
+    private Customer customer;
 
     public UUID getId() {
         return id;
@@ -45,11 +45,11 @@ public class AuthenticationToken {
         this.lastModifiedAt = lastModifiedAt;
     }
 
-    public User getUser() {
-        return user;
+    public Customer getUser() {
+        return customer;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Customer customer) {
+        this.customer = customer;
     }
 }

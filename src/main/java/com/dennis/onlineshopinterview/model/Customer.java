@@ -7,21 +7,17 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Users")
-public class User {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "Id")
+    @Column(name = "Id", nullable = false)
     public UUID id;
-    @Nonnull
-    @Column(name = "EmailAddress")
+    @Column(name = "EmailAddress", nullable = false, unique = true, length = 320)
     public String email;
-    @Nonnull
-    @Column(name = "FirstName")
+    @Column(name = "FirstName", nullable = false, length = 255)
     public String firstName;
-    @Nonnull
-    @Column(name = "LastName")
+    @Column(name = "LastName", nullable = false, length = 255)
     public String lastName;
-    @Nonnull
-    @Column(name = "Password")
+    @Column(name = "PasswordHash", nullable = false, length = 1000)
     public String passwordHash;
 }

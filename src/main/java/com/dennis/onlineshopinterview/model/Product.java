@@ -11,29 +11,24 @@ import java.util.UUID;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "Id")
+    @Column(name = "Id", nullable = false)
     private UUID id;
-    @NonNull
-    @Column(name = "ProductName")
+    @Column(name = "ProductName", nullable = false)
     private String productName;
-    @NonNull
-    @Column(name = "ProductImageUrl")
+    @Column(name = "ProductImageUrl", nullable = false)
     private String productImageUrl;
-    @NonNull
-    @Column(name = "Weight")
+    @Column(name = "Weight", nullable = false)
     private double weight;
-    @NonNull
-    @Column(name = "Price")
+    @Column(name = "Price", nullable = false)
     private double price;
-    @NonNull
-    @Column(name = "PromotionalPrice")
+    @Column(name = "PromotionalPrice", nullable = false)
     private double promotionalPrice;
+    @Column(name = "Description", nullable = false)
+    private String description;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "categoryId", nullable = false)
+    private Category category;
 
-    //Many to One relationship
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "CategoryId")
-    Category category;
     @NonNull
     public String getProductName() {
         return productName;
@@ -90,5 +85,13 @@ public class Product {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
