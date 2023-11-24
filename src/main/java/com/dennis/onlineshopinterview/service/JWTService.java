@@ -19,7 +19,7 @@ public class JWTService {
     @Value("${jwt.expiryInSeconds}")
     private String expiryInSeconds;
     private Algorithm algorithm;
-    private static final String EMAIL_KEY= "EMAIL";
+    private static final String USER_ID= "USER_ID";
 
     @PostConstruct
     public void postConstruct(){
@@ -28,10 +28,14 @@ public class JWTService {
 
     public String generateJWT(Customer user){
         return JWT.create()
-                .withClaim(EMAIL_KEY, user.email)
+                .withClaim(USER_ID, String.valueOf(user.getId()))
                 .withExpiresAt(new Date(System.currentTimeMillis() + Long.parseLong(expiryInSeconds) * 1000))
                 .withIssuer(issuer)
                 .sign(algorithm);
+    }
+
+    public String getUserId(String token){
+        return JWT.decode(token).getClaim(USER_ID).asString();
     }
 
 }
