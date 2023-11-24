@@ -1,10 +1,11 @@
 package com.dennis.onlineshopinterview.api.controller;
 
 import com.dennis.onlineshopinterview.api.model.LoginRequest;
-import com.dennis.onlineshopinterview.api.model.Registration;
+import com.dennis.onlineshopinterview.api.model.RegistrationRequest;
 import com.dennis.onlineshopinterview.exception.UserExistsException;
 import com.dennis.onlineshopinterview.model.Customer;
 import com.dennis.onlineshopinterview.repository.UserRepository;
+import com.dennis.onlineshopinterview.service.JWTService;
 import com.dennis.onlineshopinterview.service.UserService;
 import com.dennis.onlineshopinterview.shared.ApiResponse;
 import jakarta.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,17 +25,21 @@ import java.util.Optional;
 public class AuthenticationController {
     @Autowired
     private UserService userService;
-    @PostMapping(name = "/register")
-    public ResponseEntity registerUser(@Valid @RequestBody Registration registrationBody) {
+    @Autowired
+    private JWTService jwtService;
+    @Autowired
+    private UserRepository userRepository;
+    @PostMapping("/register")
+    public ResponseEntity registerUser(@Valid @RequestBody RegistrationRequest registrationRequestBody) {
         try {
-            userService.registerUser(registrationBody);
+            userService.registerUser(registrationRequestBody);
             return ResponseEntity.ok().build();
         } catch (UserExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
 
-    @PostMapping(name = "/login")
+    @PostMapping("/login")
     public ResponseEntity<ApiResponse> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
         String jwt = userService.loginUser(loginRequest);
         if(jwt == null){

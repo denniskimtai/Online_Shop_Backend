@@ -29,7 +29,7 @@ public class JWTService {
     public String generateJWT(Customer user){
         return JWT.create()
                 .withClaim(EMAIL_KEY, user.email)
-                .withExpiresAt(new Date(System.currentTimeMillis() + (1000 + expiryInSeconds)))
+                .withExpiresAt(new Date(System.currentTimeMillis() + Long.parseLong(expiryInSeconds) * 1000))
                 .withIssuer(issuer)
                 .sign(algorithm);
     }

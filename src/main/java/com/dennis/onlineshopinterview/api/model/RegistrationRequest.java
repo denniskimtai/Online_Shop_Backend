@@ -1,9 +1,8 @@
 package com.dennis.onlineshopinterview.api.model;
 
-import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.*;
 
-public class Registration {
+public class RegistrationRequest {
     @NotNull
     @NotBlank
     @Email

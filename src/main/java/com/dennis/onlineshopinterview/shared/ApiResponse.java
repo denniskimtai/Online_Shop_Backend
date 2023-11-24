@@ -1,20 +1,20 @@
 package com.dennis.onlineshopinterview.shared;
 
 public class ApiResponse {
-    public String message;
+    public String data;
     public boolean success;
 
-    public ApiResponse(String message, boolean success) {
-        this.message = message;
+    public ApiResponse(String data, boolean success) {
+        this.data = data;
         this.success = success;
     }
 
-    public String getMessage() {
-        return message;
+    public String getData() {
+        return data;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public boolean isSuccess() {
